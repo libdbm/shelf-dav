@@ -374,7 +374,7 @@ class DavDirectoryResource extends DavResource {
   @override
   Future<Response> propfind(Request request) async {
     _logger.info('PROPFIND(${request.url})');
-    final responses = XmlBuilder()..namespace('DAV:', 'D');
+    final responses = XmlBuilder();
 
     // Per RFC 4918, PROPFIND defaults to infinity when no Depth header is provided
     await directory(

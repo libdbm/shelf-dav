@@ -595,16 +595,21 @@ void main() {
     });
 
     test('simple property', () async {
-      final builder = XmlBuilder()..namespace('DAV:', 'D');
-      property(builder, 'foo', 'bar');
+      final builder = XmlBuilder();
+      builder.element(
+        'prop',
+        namespace: 'DAV:',
+        namespaces: {'DAV:': 'D'},
+        nest: () => property(builder, 'foo', 'bar'),
+      );
       expect(
         builder.buildDocument().toXmlString(),
-        equals('<D:foo>bar</D:foo>'),
+        equals('<D:prop xmlns:D="DAV:"><D:foo>bar</D:foo></D:prop>'),
       );
     });
 
     test('file properties', () async {
-      final builder = XmlBuilder()..namespace('DAV:', 'D');
+      final builder = XmlBuilder();
       await file(
         builder,
         p.Context(current: '/dav'),
@@ -617,7 +622,7 @@ void main() {
     });
 
     test('relative file properties', () async {
-      final builder = XmlBuilder()..namespace('DAV:', 'D');
+      final builder = XmlBuilder();
       await file(
         builder,
         p.Context(current: '/dav'),
@@ -630,7 +635,7 @@ void main() {
     });
 
     test('a directory properties', () async {
-      final builder = XmlBuilder()..namespace('DAV:', 'D');
+      final builder = XmlBuilder();
       await directory(
         builder,
         p.Context(current: '/dav'),
@@ -652,7 +657,7 @@ void main() {
     });
 
     test('relative directory properties', () async {
-      final builder = XmlBuilder()..namespace('DAV:', 'D');
+      final builder = XmlBuilder();
       await directory(
         builder,
         p.Context(current: '/dav'),
