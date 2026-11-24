@@ -264,7 +264,7 @@ class DavFileResource extends DavResource {
       custom[prop.name] = prop.value;
     }
 
-    final response = XmlBuilder()..namespace('DAV:', 'D');
+    final response = XmlBuilder();
 
     await file(
       response,

@@ -6,13 +6,12 @@ import 'package:xml/xml.dart';
 /// This utility reduces XML boilerplate duplication between file and directory resources
 Response buildPropfindResponse(final XmlBuilder responses) {
   final builder = XmlBuilder(optimizeNamespaces: true)
-    ..declaration(version: '1.0', encoding: 'UTF-8')
-    ..namespace('DAV:', 'D');
+    ..declaration(version: '1.0', encoding: 'UTF-8');
 
   builder.element(
     'multistatus',
     namespace: 'DAV:',
-    attributes: {'xmlns:D': 'DAV:'},
+    namespaces: {'DAV:': 'D'},
     nest: () {
       for (final node in responses.buildDocument().children) {
         builder.xml(node.toXmlString());

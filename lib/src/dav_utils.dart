@@ -63,6 +63,7 @@ Future<void> file(
   builder.element(
     'response',
     namespace: 'DAV:',
+    namespaces: {'DAV:': 'D'},
     nest: () {
       builder.element(
         'href',
@@ -143,6 +144,7 @@ Future<void> directory(
   builder.element(
     'response',
     namespace: 'DAV:',
+    namespaces: {'DAV:': 'D'},
     nest: () {
       builder.element(
         'href',
